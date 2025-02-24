@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-poppins: Poppins, sans-serif;
+    --color-primary-dark: #090B0B;
+    --color-primary-accent: #00df82;
+}
+
+body {
+    @apply bg-primary-dark font-poppins
+}
+
+.text-area-shadow {
+    box-shadow: 0 0 6px rgba(0, 223, 130, 0.5);
+}
+
+@layer base {
+  * {
+    @apply border-none ;
+    }
+  body {
+    @apply bg-primary-dark ;
+    }
+}
+
