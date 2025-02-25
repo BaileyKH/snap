@@ -24,13 +24,13 @@ export default async function handler(req, res) {
             model: "gpt-4o-mini",
             store: false,
             messages: [
-                {"role": "developer", "content": "You are a helpful assistant that answers programming questions in the style of a senior front-end software engineer."},
+                {"role": "developer", "content": "You are a helpful assistant that only provides code as a response in the style of a senior front-end software engineer."},
                 {
                     role: "user",
                     content: `Generate a React component using TailwindCSS for the following description: ${prompt}`
                 }
             ],
-            
+            max_tokens: 200,
         });
 
         const generatedComponent = response.choices?.[0]?.message?.content?.trim();
