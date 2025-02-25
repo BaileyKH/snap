@@ -7,63 +7,7 @@ import { Particles } from "@/components/magicui/particles";
 export const Home = () => {
 
     const [description, setDescription] = useState('');
-    const [compCode, setCompCode] = useState(`
-            javascript
-import React from 'react';
-
-const RedButton = ({ text = 'Click Me', onClick }) => {
-    return (
-        <button
-            onClick={onClick}
-            className="bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 transition duration-200"
-        >
-            {text}
-        </button>
-    );
-};
-
-export default RedButton;
-
-### Explanation:
-
-1. **Component Definition**: The RedButton component is a functional component that takes in two props: text and onClick. The text prop provides customizable button content and defaults to "Click Me" if no value is passed. The onClick prop allows you to pass a function to handle button clicks.
-
-2. **Button Element**: The button element is styled using TailwindCSS classes:
-   - bg-red-600: Sets the background color to a red shade.
-   - text-white: Colors the text white.
-   - font-semibold: Applies a semi-bold font weight.
-   - py-2 and px-4: Adds padding vertically and horizontally for better spacing.
-   - rounded: Gives the button rounded corners.
-   - shadow-md: Applies a medium shadow for depth.
-   - hover:bg-red-700: Changes the background color to a darker red on hover.
-   - focus:outline-none: Removes the default outline on focus.
-   - focus:ring focus:ring-red-500: Adds a ring effect when the button is focused, enhancing accessibility visually.
-   - transition duration-200: Applies a smooth transition effect when state changes (such as hover).
-
-### Usage Example:
-
-You can use this RedButton component in any part of your application like this:
-
-javascript
-import React from 'react';
-import RedButton from './RedButton';
-
-const App = () => {
-    const handleClick = () => {
-        alert('Button clicked!');
-    };
-
-    return (
-        <div className="flex justify-center items-center h-screen">
-            <RedButton text="Submit" onClick={handleClick} />
-        </div>
-    );
-};
-
-export default App;
-
-In this example, clicking the "Submit" button will trigger an alert showing "Button clicked!". You can customize the button text by changing the text prop when rendering RedButton.
-        `);
+    const [compCode, setCompCode] = useState('');
 
     const handleGeneration = async () => {
         if (!description) return;
