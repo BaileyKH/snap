@@ -13,15 +13,7 @@ body {
 }
 
 .text-area-shadow {
-    box-shadow: 0 0 6px rgba(0, 223, 130, 0.5);
+    box-shadow: 0 0 4px rgba(0, 223, 130, 0.5);
 }
 
-@layer base {
-  * {
-    @apply border-none ;
-    }
-  body {
-    @apply bg-primary-dark ;
-    }
-}
 

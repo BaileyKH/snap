@@ -1,8 +1,27 @@
+import { useState } from "react";
+
 import { LineShadowText } from "@/components/magicui/line-shadow-text";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { Particles } from "@/components/magicui/particles";
 
 export const Home = () => {
+
+    const [description, setDescription] = useState('');
+    const [compCode, setCompCode] = useState('');
+
+    const handleGeneration = async () => {
+        if (!description) return;
+
+        const response = await fetch('api/generate', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: description })
+        });
+
+        const data = await response.json();
+        setCompCode(data.component)
+    }
+
     return(
         <main>
             <section>
@@ -11,13 +30,25 @@ export const Home = () => {
                         <h1 className="text-9xl font-bold text-primary-accent mb-2">Snap<LineShadowText className="" shadowColor={'#00df82'}>AI</LineShadowText></h1>
                         <TextAnimate animation="slideLeft" by="character" once className="text-primary-accent text-lg tracking-widest">Generate stunning react components at the snap of a finger</TextAnimate>
                     </div>
-                    <div className="mt-12 z-10">
-                        <form>
-                            <textarea
-                                placeholder="Describe your component..."
-                                className="bg-primary-dark border border-primary-accent/50 rounded-md text-area-shadow resize-y w-[450px] h-24 p-2 placeholder:text-white/50"
-                            />
-                        </form>
+                    <div className="flex justify-center items-center gap-4 mt-12 z-10">
+                        <textarea
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Describe your component..."
+                            className="bg-primary-dark border border-primary-accent/50 rounded-md text-area-shadow resize-y w-[450px] h-24 p-2 placeholder:text-white/50 text-white"
+                        />
+                        <button 
+                            onClick={handleGeneration}
+                            className="border border-primary-accent rounded-md text-primary-accent p-2 hover:bg-primary-accent hover:text-primary-dark transition-colors duration-300 ease-in-out cursor-pointer tracking-wide">
+                            Create
+                        </button>
+                    </div>
+                    <div className="z-10 mt-24 border-t border-primary-accent/20">
+                        {compCode && (
+                            <pre className="mt-4 p-4 bg-gray-900 text-white rounded-md w-full max-w-lg">
+                                <code>{compCode}</code>
+                            </pre>
+                        )}
                     </div>
                     <Particles
                         className="absolute inset-0 z-0"
