@@ -1,4 +1,8 @@
 import { useState } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { atelierCaveDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+import { IconClipboard } from '@tabler/icons-react';
 
 import { LineShadowText } from "@/components/magicui/line-shadow-text";
 import { TextAnimate } from "@/components/magicui/text-animate";
@@ -6,8 +10,9 @@ import { Particles } from "@/components/magicui/particles";
 
 export const Home = () => {
 
+    const [copy, setCopy] = useState(false)
     const [description, setDescription] = useState('');
-    const [compCode, setCompCode] = useState('');
+    const [compCode, setCompCode] = useState(``);
 
     const handleGeneration = async () => {
         if (!description) return;
@@ -19,16 +24,27 @@ export const Home = () => {
         });
 
         const data = await response.json();
-        setCompCode(data.component)
-    }
+        setCompCode(data.component);
+    };
 
-    return(
+    const handleCopyToClipboard = () => {
+        if (!compCode) return;
+        navigator.clipboard.writeText(compCode)
+            .then(() => console.log("Code copied to clipboard"))
+            .catch((error) => alert("Failed to copy code: " + error));
+    };
+
+    return (
         <main>
             <section>
-                <div className="relative flex flex-col justify-center items-center py-8">
+                <div className="relative flex flex-col justify-center items-center py-8 h-screen">
                     <div className="text-center z-10">
-                        <h1 className="text-9xl font-bold text-primary-accent mb-2">Snap<LineShadowText className="" shadowColor={'#00df82'}>AI</LineShadowText></h1>
-                        <TextAnimate animation="slideLeft" by="character" once={true} className="text-primary-accent text-lg tracking-widest">Generate stunning react components at the snap of a finger</TextAnimate>
+                        <h1 className="text-9xl font-bold text-primary-accent mb-2">
+                            Snap<LineShadowText shadowColor={'#00df82'}>AI</LineShadowText>
+                        </h1>
+                        <TextAnimate animation="slideLeft" by="character" once={true} className="text-primary-accent text-lg tracking-widest">
+                            Generate stunning react components at the snap of a finger
+                        </TextAnimate>
                     </div>
                     <div className="flex justify-center items-center gap-4 mt-12 z-10">
                         <textarea
@@ -45,9 +61,18 @@ export const Home = () => {
                     </div>
                     <div className="flex justify-center items-center z-10 mt-16 w-full">
                         {compCode && (
-                            <pre className="my-12 p-4 bg-primary-dark border-2 border-primary-accent/20 text-white rounded-md w-full max-w-7xl overflow-scroll">
-                                <code>{compCode}</code>
-                            </pre>
+                            <div className="relative">
+                                <button
+                                    onClick={handleCopyToClipboard}
+                                    className="absolute -top-1 right-2 bg-primary-accent border border-primary-accent p-1 rounded-md focus:outline-none hover:bg-primary-dark transition-colors duration-300 ease-in-out cursor-pointer"
+                                    title="Copy to Clipboard"
+                                >
+                                    <IconClipboard stroke={1.5} className="text-primary-dark hover:text-primary-accent transition-colors duration-300 ease-in-out"/>
+                                </button>
+                                <pre className="my-12 bg-primary-dark border-2 border-primary-accent/20 text-white rounded-md w-full max-w-7xl overflow-scroll">
+                                    <SyntaxHighlighter language='javascript' style={atelierCaveDark}>{compCode}</SyntaxHighlighter>
+                                </pre>
+                            </div>
                         )}
                     </div>
                     <Particles
@@ -61,4 +86,4 @@ export const Home = () => {
             </section>
         </main>
     );
-}
+};
