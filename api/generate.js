@@ -30,7 +30,7 @@ export default async function handler(req, res) {
                     content: `Generate a React component using TailwindCSS for the following description: ${prompt}`
                 }
             ],
-            max_tokens: 200,
+            
         });
 
         const generatedComponent = response.choices?.[0]?.message?.content?.trim();
