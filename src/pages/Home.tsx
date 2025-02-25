@@ -10,7 +10,6 @@ import { Particles } from "@/components/magicui/particles";
 
 export const Home = () => {
 
-    const [copy, setCopy] = useState(false)
     const [description, setDescription] = useState('');
     const [compCode, setCompCode] = useState(``);
 
