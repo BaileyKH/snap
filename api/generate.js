@@ -12,10 +12,10 @@ export default async function handler(req, res) {
         }
 
         const openai = new OpenAI({
-            apiKey: import.meta.env.VITE_SNAP_API_KEY,
+            apiKey: process.env.SNAP_API_KEY,
         });
 
-        if (!import.meta.env.VITE_SNAP_API_KEY) {
+        if (!process.env.SNAP_API_KEY) {
             return res.status(500).json({ error: "OpenAI API key is missing" });
         }
     

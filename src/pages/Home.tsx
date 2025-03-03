@@ -57,13 +57,12 @@ export const Home: FC = () => {
                 setError("Failed to copy code: " + (error instanceof Error ? error.message : String(error)));
             });
     };
+    
     const renderComponentPreview = () => {
         if (!compCode) return null;
         
         try {
-            const previewContainer = document.createElement('div');
             let jsxContent = compCode;
-
             const returnMatch = compCode.match(/return\s*\(\s*([\s\S]*?)\s*\)\s*;?/);
 
             if (returnMatch && returnMatch[1]) {
@@ -115,6 +114,7 @@ export const Home: FC = () => {
             );
         }
     };
+    
     return (
         <main>
             <section>
@@ -127,7 +127,6 @@ export const Home: FC = () => {
                             Generate stunning react components at the snap of a finger
                         </p>
                     </div>
-                    
                     <div className="flex flex-col justify-center items-center gap-4 mt-12 z-10 w-full max-w-2xl">
                         <textarea
                             value={description}
@@ -135,7 +134,6 @@ export const Home: FC = () => {
                             placeholder="Describe your component... (e.g., 'A card with an image, title, and description with a hover effect')"
                             className="bg-primary-dark border border-primary-accent/50 rounded-md text-area-shadow resize-y w-full h-24 p-3 placeholder:text-white/50 text-white focus:outline-primary-accent focus:ring-2 focus:ring-primary-accent focus:ring-offset-0"
                         />
-                        
                         <div className="flex w-full justify-end">
                             <button 
                                 onClick={handleGeneration}
@@ -162,13 +160,11 @@ export const Home: FC = () => {
                             </button>
                         </div>
                     </div>
-
                     {error && (
                         <div className="mt-4 text-red-500 bg-red-100/10 border border-red-500/30 rounded-md p-2 max-w-2xl w-full text-center">
                             {error}
                         </div>
                     )}
-                    
                     {compCode && (
                         <div className="z-10 mt-8 w-full max-w-7xl">
                             <div className="flex border-b border-primary-accent/30 mb-2">
@@ -187,7 +183,6 @@ export const Home: FC = () => {
                                     Preview
                                 </button>
                             </div>
-                            
                             {activeTab === 'code' ? (
                                 <div className="relative">
                                     <button
@@ -210,7 +205,6 @@ export const Home: FC = () => {
                             )}
                         </div>
                     )}
-                    
                     <Particles
                         className="absolute inset-0 z-0"
                         quantity={200}
