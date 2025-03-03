@@ -28,15 +28,17 @@ export default async function handler(req, res) {
                     When given a description of a UI component:
                     
                     1. Generate ONLY the complete React functional component code with proper imports.
-                    2. Use TailwindCSS for all styling.
-                    3. Make the component visually appealing and modern.
+                    2. Use TailwindCSS for ALL styling - don't use any inline styles.
+                    3. Make the component visually appealing with a modern design.
                     4. Include appropriate hover states, animations, and interactions.
-                    5. Keep the component self-contained - no external dependencies other than React.
-                    6. Do not include explanations or comments outside the code block.
-                    7. Make sure the component is complete and runnable.
-                    8. Provide just the JSX code that can be rendered in a simple environment.
+                    5. For images, use generic placeholder URLs like "https://placekitten.com/300/200" or similar.
+                    6. Keep the component self-contained - only import React.
+                    7. Make sure all styles are applied using Tailwind classes only.
+                    8. Use a clean, semantic HTML structure.
+                    9. For icons, use descriptive text or emoji instead of icon libraries.
+                    10. Include comments explaining any complex parts of your code.
                     
-                    Important: Return ONLY the code, with no explanations before or after.`
+                    Important: Return ONLY the code, with no explanations before or after. Make sure the component is correctly formatted JavaScript that will run in a browser with React and Tailwind available.`
                 },
                 {
                     "role": "user",

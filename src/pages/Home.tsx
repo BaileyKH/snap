@@ -69,6 +69,10 @@ export const Home: FC = () => {
                 jsxContent = returnMatch[1];
             }
 
+            jsxContent = jsxContent.replace(/className=/g, 'class=');
+
+            jsxContent = jsxContent.replace(/src=["']https?:\/\/[^"']+["']/g, 'src="/api/placeholder/400/200"');
+
             return (
                 <div className="w-full h-96 overflow-hidden border-2 border-primary-accent/20 rounded-md bg-white">
                     <iframe
@@ -79,6 +83,18 @@ export const Home: FC = () => {
                                 <meta charset="UTF-8">
                                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                 <script src="https://cdn.tailwindcss.com"></script>
+                                <script>
+                                    tailwind.config = {
+                                        theme: {
+                                            extend: {
+                                                colors: {
+                                                    'primary-dark': '#111827',
+                                                    'primary-accent': '#00df82',
+                                                }
+                                            }
+                                        }
+                                    }
+                                </script>
                                 <style>
                                     body {
                                         display: flex;
@@ -86,16 +102,31 @@ export const Home: FC = () => {
                                         align-items: center;
                                         min-height: 100vh;
                                         padding: 2rem;
+                                        background-color: #f5f5f5;
                                     }
-                                    /* Add your custom colors */
-                                    :root {
-                                        --primary-dark: #111827;
-                                        --primary-accent: #00df82;
+                                    
+                                    /* Animation classes */
+                                    .animate-fade-in {
+                                        animation: fadeIn 0.5s ease-in-out;
+                                    }
+                                    
+                                    .animate-pulse {
+                                        animation: pulse 2s infinite;
+                                    }
+                                    
+                                    @keyframes fadeIn {
+                                        0% { opacity: 0; }
+                                        100% { opacity: 1; }
+                                    }
+                                    
+                                    @keyframes pulse {
+                                        0%, 100% { opacity: 1; }
+                                        50% { opacity: 0.7; }
                                     }
                                 </style>
                             </head>
                             <body>
-                                <div id="preview-container">${jsxContent}</div>
+                                ${jsxContent}
                             </body>
                             </html>
                         `}
@@ -114,7 +145,7 @@ export const Home: FC = () => {
             );
         }
     };
-    
+
     return (
         <main>
             <section>
@@ -134,6 +165,7 @@ export const Home: FC = () => {
                             placeholder="Describe your component... (e.g., 'A card with an image, title, and description with a hover effect')"
                             className="bg-primary-dark border border-primary-accent/50 rounded-md text-area-shadow resize-y w-full h-24 p-3 placeholder:text-white/50 text-white focus:outline-primary-accent focus:ring-2 focus:ring-primary-accent focus:ring-offset-0"
                         />
+                        
                         <div className="flex w-full justify-end">
                             <button 
                                 onClick={handleGeneration}
