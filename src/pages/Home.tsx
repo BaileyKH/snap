@@ -158,7 +158,7 @@ export const Home: FC = () => {
                             Generate stunning react components at the snap of a finger
                         </p>
                     </div>
-                    <div className="flex flex-col justify-center items-center gap-4 mt-12 z-10 w-full max-w-2xl">
+                    <div className="flex justify-center items-center gap-4 mt-12 z-10 w-full max-w-2xl">
                         <textarea
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
@@ -166,7 +166,7 @@ export const Home: FC = () => {
                             className="bg-primary-dark border border-primary-accent/50 rounded-md text-area-shadow resize-y w-full h-24 p-3 placeholder:text-white/50 text-white focus:outline-primary-accent focus:ring-2 focus:ring-primary-accent focus:ring-offset-0"
                         />
                         
-                        <div className="flex w-full justify-end">
+                        <div className="flex w-max">
                             <button 
                                 onClick={handleGeneration}
                                 disabled={isLoading || !description.trim()}
