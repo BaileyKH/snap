@@ -148,7 +148,7 @@ export const Home: FC = () => {
 
     return (
         <main>
-            <section>
+            <section className="py-12">
                 <div className="relative flex flex-col justify-center items-center py-8 h-screen">
                     <div className="text-center z-10">
                         <h1 className="text-9xl font-bold text-primary-accent mb-2">
