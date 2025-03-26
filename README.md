@@ -11,11 +11,11 @@ SnapAI is an AI-powered React component generator that transforms natural langua
 
 ## Features
 
-- 🧠 **AI-Powered Generation**: Utilizes OpenAI's API to transform descriptions into React components
-- 👁️ **Live Preview**: See your component in action before adding it to your project
-- 🎨 **Tailwind Styling**: All components use Tailwind CSS for modern, responsive designs
-- 📋 **One-Click Copy**: Easily copy the generated code to your clipboard
-- 💻 **Syntax Highlighting**: Clear, highlighted code for better readability
+- **AI-Powered Generation**: Utilizes OpenAI's API to transform descriptions into React components
+- **Live Preview**: See your component in action before adding it to your project
+- **Tailwind Styling**: All components use Tailwind CSS for modern, responsive designs
+- **One-Click Copy**: Easily copy the generated code to your clipboard
+- **Syntax Highlighting**: Clear, highlighted code for better readability
 
 ## Getting Started
 
